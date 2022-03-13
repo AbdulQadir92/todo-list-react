@@ -1,5 +1,7 @@
 import TaskTable from "./TaskTable";
 import { useState, useEffect } from 'react';
+import GetRequest from "./GetRequest";
+import PostRequest from "./PostRequest";
 
 const Home = () => {
     const [id, setId] = useState('');
@@ -7,18 +9,11 @@ const Home = () => {
     const [description, setDescription] = useState('');
     const [updateComponent, setUpdateComponent] = useState('');
     const [isEdit, setIsEdit] = useState(false);
-    const [todos, setTodos] = useState(null);
 
+    const todos = GetRequest('http://127.0.0.1:8000/todos', updateComponent);
 
-    useEffect(() => {   
-        fetch('http://127.0.0.1:8000/todos')
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            setTodos(data);
-            console.log(data);
-        })
+    useEffect(() => {
+       
     }, [updateComponent])
 
     const handlePost = (e) => {
@@ -43,6 +38,7 @@ const Home = () => {
         setTitle(title);
         setDescription(description);
         setIsEdit(true);
+        document.querySelector('#task-form').scrollIntoView({behavior: "smooth"});
     }
 
     const handleUpdate = () => {
@@ -67,8 +63,23 @@ const Home = () => {
             method: 'DELETE'
         })
         .then(() => {
+            console.log('Task deleted');
             setUpdateComponent('Task deleted');
             setUpdateComponent('');
+        })
+    }
+
+    const handleSearch = (e) => {
+        let value = e.target.value.toLowerCase();
+
+        let tds = document.querySelectorAll('#taskTable td');
+        tds.forEach(function(item) {
+            let str = item.textContent.toLowerCase();
+            if(str.indexOf(value) !== -1){
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
         })
     }
 
@@ -76,7 +87,7 @@ const Home = () => {
         <div className="home my-3">
             {/* Task Details Form */}
             <div className="card shadow task-form-table">
-                <div className="card-body">
+                <div className="card-body" id="task-form">
                     <h5 className="text-center">Enter task details</h5>
                     <form onSubmit={handlePost}>
                         <input type="hidden" value={id} />
@@ -128,14 +139,15 @@ const Home = () => {
                 <div className="card-body">
                     <div className="d-flex justify-content-between border-bottom pb-3">
                         <h5>My Tasks</h5>
-                        <input type="search" className="form-control form-control-sm w-50" placeholder="Search task" />
+                        <input type="search" className="form-control form-control-sm w-50" placeholder="Search task" onChange={handleSearch} />
                     </div>
                     <table className="table" id="taskTable">
                         <tbody>
                             <tr>
                                {todos && todos.map(todo => (
-                                    <TaskTable todo={todo} fillForm={fillForm} handleDelete={handleDelete} key={todo.id} />
-                               )) } 
+                                    <TaskTable todo={todo} fillForm={fillForm} handleDelete={(e) => {handleDelete(e)}} key={todo.id} />
+                               ))}
+                               {todos.length === 0 && <td>No tasks to show</td>}
                             </tr>
                         </tbody>
                     </table>

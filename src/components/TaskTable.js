@@ -12,7 +12,7 @@ const TaskTable = ({ todo, fillForm, handleDelete }) => {
                     <FontAwesomeIcon icon={faXmark} className="text-danger ps-2" onClick={() => {handleDelete(todo.id)} } />
                 </div>
             </div>
-            <div>{todo.description}</div>
+            <div className="text-justify">{todo.description}</div>
         </td>
     );
 }

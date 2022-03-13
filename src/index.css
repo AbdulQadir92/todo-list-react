@@ -1,12 +1,23 @@
 
 .search-btn-inp {
   height: 32px;
-  /* margin-top: 1px; */
 }
 
 .task-form-table {
   width: 50%;
   margin: auto;
+}
+
+@media only screen and (max-width: 992px){
+  .task-form-table {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 576px){
+  .task-form-table {
+    width: 90%;
+  }
 }
 
 #taskTable td {
@@ -15,4 +26,8 @@
 
 svg {
   cursor: pointer;
+}
+
+.text-justify {
+  text-align: justify !important;
 }
