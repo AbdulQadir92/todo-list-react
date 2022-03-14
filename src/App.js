@@ -2,6 +2,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer'
 import Home from './components/Home';
 
 
@@ -15,7 +16,7 @@ function App() {
             <Route exact path="/" element={ <Home /> }></Route>
           </Routes>
         </div>
-
+        <Footer />
       </div>
     </Router>
   );

@@ -1,3 +1,75 @@
+:root {
+  --main-color: #E60965;
+  --secondary-color-1: #F94892;
+  --secondary-color-2: #FFA1C9;
+  --secondary-color-3: #FBE5E5;
+}
+
+.primary-bg {
+  background-color: var(--main-color) !important;
+}
+
+.secondary-bg-1 {
+  background-color: var(--secondary-color-1) !important;
+}
+
+.secondary-bg-2 {
+  background-color: var(--secondary-color-2) !important;
+}
+
+.secondary-bg-3 {
+  background-color: var(--secondary-color-3) !important;
+}
+
+.primary-color {
+  color: var(--main-color) !important;
+}
+
+.secondary-color-1 {
+  color: var(--secondary-color-1) !important;
+}
+
+.secondary-color-2 {
+  color: var(--secondary-color-2) !important;
+}
+
+.secondary-color-3 {
+  color: var(--secondary-color-3) !important;
+}
+
+.primary-btn {
+  background-color: var(--main-color) !important;
+  color: white !important;
+}
+
+.primary-btn:hover {
+  background-color: var(--secondary-color-1) !important;
+}
+
+.secondary-btn-1 {
+  background-color: var(--secondary-color-1) !important;
+  color: white !important;
+}
+
+.secondary-btn-1:hover {
+  background-color: var(--secondary-color-2) !important;
+}
+
+.form-control:focus, .btn:focus {
+  border: 1px solid rgba(249, 72, 146, 0.50) !important;
+  box-shadow: 0 0 0 0.25rem rgba(249, 72, 146, 0.25) !important;
+}
+
+.App {
+  position: relative;
+  min-height: 100vh;
+}
+
+.footer {
+  width: 100%;
+  position: static;
+  bottom: 0;
+}
 
 .search-btn-inp {
   height: 32px;
